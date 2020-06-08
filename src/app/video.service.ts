@@ -11,6 +11,7 @@ export class VideoService {
   private _getUrl = '/api/videos'; 
   private _postUrl = '/api/videos';
   private _putUrl = '/api/videos/';
+  private _deleteUrl = '/api/videos/';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -31,9 +32,14 @@ export class VideoService {
                       .pipe();
   }
 
-  
   updateVideo(video:Video):Observable<Video>{
     return this._http.put<Video>(this._postUrl, video, this.httpOptions)
+                      .pipe();
+  }
+
+  //syntax:http.delete(url，options)
+  deleteVideo(video:Video):Observable<Video>{
+    return this._http.delete<Video>(this._deleteUrl + video._id, this.httpOptions)
                       .pipe();
   }
 
